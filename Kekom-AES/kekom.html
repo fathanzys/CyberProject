@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AES Encryption</title>
+    <link rel="stylesheet" href="kekom.css">
+</head>
+<body class="dark">
+    <div class="container">
+        <h1>AES Encryption</h1>
+        <div class="theme-switcher">
+            <button onclick="toggleTheme()">Tema</button>
+        </div>
+        <div class="form-container">
+            <div class="column">
+                <div class="form-group">
+                    <label for="plaintext">Enter Plain Text to Encrypt:</label>
+                    <textarea id="plaintext" placeholder="Enter text to encrypt"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="mode">Select Mode:</label>
+                    <select id="mode" onchange="toggleIVInput()">
+                        <option value="CBC">CBC</option>
+                        <option value="ECB">ECB</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="keySize">Key Size in Bits:</label>
+                    <select id="keySize">
+                        <option value="128">128</option>
+                        <option value="192">192</option>
+                        <option value="256">256</option>
+                    </select>
+                </div>
+                <div class="form-group" id="ivGroup">
+                    <label for="iv">Enter Initialization Vector:</label>
+                    <input type="text" id="iv" placeholder="Enter IV (for CBC mode)">
+                </div>
+            </div>
+            <div class="column">
+                <div class="form-group">
+                    <label for="key">Enter Secret Key:</label>
+                    <input type="text" id="key" placeholder="Enter secret key">
+                </div>
+                <div class="form-group">
+                    <label for="outputFormat">Output Text Format:</label>
+                    <select id="outputFormat">
+                        <option value="Base64">Base64</option>
+                        <option value="Hex">Hex</option>
+                    </select>
+                </div>
+                <button onclick="encrypt()">Encrypt</button>
+                <div class="form-group">
+                    <label for="ciphertext">Ciphertext:</label>
+                    <textarea id="ciphertext" placeholder="Encrypted text"></textarea>
+                </div>
+                <button onclick="decrypt()">Decrypt</button>
+                <div class="form-group">
+                    <label for="decryptedtext">Decrypted Text:</label>
+                    <textarea id="decryptedtext" placeholder="Decrypted text" readonly></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script>
+        function toggleIVInput() {
+            const mode = document.getElementById("mode").value;
+            const ivGroup = document.getElementById("ivGroup");
+            if (mode === "CBC") {
+                ivGroup.style.display = "block";
+            } else {
+                ivGroup.style.display = "none";
+            }
+        }
+
+        function encrypt() {
+            const mode = document.getElementById("mode").value;
+            const keySize = parseInt(document.getElementById("keySize").value);
+            const key = document.getElementById("key").value;
+            const plaintext = document.getElementById("plaintext").value;
+            const outputFormat = document.getElementById("outputFormat").value;
+
+            let encrypted;
+            if (mode === "CBC") {
+                const iv = document.getElementById("iv").value;
+                const cipher = CryptoJS.AES.encrypt(plaintext, CryptoJS.enc.Utf8.parse(key), {
+                    iv: CryptoJS.enc.Utf8.parse(iv),
+                    mode: CryptoJS.mode.CBC,
+                    padding: CryptoJS.pad.Pkcs7,
+                    keySize: keySize / 32
+                });
+                encrypted = cipher.ciphertext;
+            } else {
+                const cipher = CryptoJS.AES.encrypt(plaintext, CryptoJS.enc.Utf8.parse(key), {
+                    mode: CryptoJS.mode.ECB,
+                    padding: CryptoJS.pad.Pkcs7,
+                    keySize: keySize / 32
+                });
+                encrypted = cipher.ciphertext;
+            }
+
+            if (outputFormat === "Base64") {
+                document.getElementById("ciphertext").value = CryptoJS.enc.Base64.stringify(encrypted);
+            } else {
+                document.getElementById("ciphertext").value = CryptoJS.enc.Hex.stringify(encrypted);
+            }
+        }
+
+        function decrypt() {
+            const mode = document.getElementById("mode").value;
+            const keySize = parseInt(document.getElementById("keySize").value);
+            const key = document.getElementById("key").value;
+            const ciphertext = document.getElementById("ciphertext").value;
+            const outputFormat = document.getElementById("outputFormat").value;
+
+            let decrypted;
+            if (mode === "CBC") {
+                const iv = document.getElementById("iv").value;
+                let cipherParams;
+                if (outputFormat === "Base64") {
+                    cipherParams = CryptoJS.lib.CipherParams.create({
+                        ciphertext: CryptoJS.enc.Base64.parse(ciphertext)
+                    });
+                } else {
+                    cipherParams = CryptoJS.lib.CipherParams.create({
+                        ciphertext: CryptoJS.enc.Hex.parse(ciphertext)
+                    });
+                }
+                decrypted = CryptoJS.AES.decrypt(cipherParams, CryptoJS.enc.Utf8.parse(key), {
+                    iv: CryptoJS.enc.Utf8.parse(iv),
+                    mode: CryptoJS.mode.CBC,
+                    padding: CryptoJS.pad.Pkcs7,
+                    keySize: keySize / 32
+                });
+            } else {
+                let cipherParams;
+                if (outputFormat === "Base64") {
+                    cipherParams = CryptoJS.lib.CipherParams.create({
+                        ciphertext: CryptoJS.enc.Base64.parse(ciphertext)
+                    });
+                } else {
+                    cipherParams = CryptoJS.lib.CipherParams.create({
+                        ciphertext: CryptoJS.enc.Hex.parse(ciphertext)
+                    });
+                }
+                decrypted = CryptoJS.AES.decrypt(cipherParams, CryptoJS.enc.Utf8.parse(key), {
+                    mode: CryptoJS.mode.ECB,
+                    padding: CryptoJS.pad.Pkcs7,
+                    keySize: keySize / 32
+                });
+            }
+
+            document.getElementById("decryptedtext").value = decrypted.toString(CryptoJS.enc.Utf8);
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            if (body.classList.contains('dark')) {
+                body.classList.remove('dark');
+                body.classList.add('light');
+            } else {
+                body.classList.remove('light');
+                body.classList.add('dark');
+            }
+        }
+    </script>
+</body>
+</html>

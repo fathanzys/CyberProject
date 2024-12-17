@@ -1,0 +1,149 @@
+        :root {
+            --background-dark: #1e1e2e;
+            --foreground-dark: #cdd6f4;
+            --accent-dark: #b4befe;
+            --background-light: #eff1f5;
+            --foreground-light: #4c4f69;
+            --accent-light: #7287fd;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 100px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark {
+            background-color: var(--background-dark);
+            color: var(--foreground-dark);
+        }
+
+        body.light {
+            background-color: var(--background-light);
+            color: var(--foreground-light);
+        }
+
+        .container {
+            background-color: inherit;
+            padding: 4px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            margin: 200px;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--accent-dark);
+        }
+
+        body.light h1 {
+            color: var(--accent-light);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--accent-dark);
+        }
+
+        body.light label {
+            color: var(--accent-light);
+        }
+
+        input, textarea, select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border: 1px solid #444;
+            background-color: #333;
+            color: #fff;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.light input, body.light textarea, body.light select {
+            background-color: #fff;
+            color: #000;
+            border: 1px solid #ccc;
+        }
+
+        textarea {
+            resize: none;
+            height: 80px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--accent-dark);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 15px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #e64a19;
+        }
+
+        body.light button {
+            background-color: var(--accent-light);
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .column-item {
+            flex: 1;
+        }
+
+        .theme-switcher {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+            }
+
+            .form-container {
+                flex-direction: column;
+            }
+
+            input, textarea, select {
+                width: calc(100% - 20px);
+            }
+        }
