@@ -3,54 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hybrid Cryptography File Sharing</title>
-    <link rel="stylesheet" href="kekom.css">
+    <title>test</title>
+    <link rel="stylesheet" href="kekom-tes.css">
 </head>
 <body>
     <div class="container">
         <h1>Hybrid Cryptography File Sharing</h1>
-
+    
         <!-- File Upload Form -->
         <div>
             <label for="fileInput">Upload File:</label>
             <input type="file" id="fileInput" accept="*/*">
         </div>
-
+    
         <!-- AES Encryption Form -->
         <div>
             <label for="aesKey">AES Key:</label>
             <input type="text" id="aesKey" placeholder="Enter AES key" />
             <button onclick="encryptFile()">Encrypt File</button>
         </div>
-
+    
         <!-- RSA Encryption Form -->
         <div>
             <label for="rsaPublicKey">RSA Public Key:</label>
             <input type="text" id="rsaPublicKey" placeholder="Enter RSA Public Key" />
             <button onclick="encryptAESKey()">Encrypt AES Key with RSA</button>
         </div>
-
+    
         <!-- Output -->
         <div>
             <h2>Results</h2>
-            <p id="encryptedFile"></p>
+            <label>Encrypted File Content:</label>
+            <div id="encryptedFile" class="scrollable-box"></div>
             <p id="encryptedAESKey"></p>
+            <p id="fileSize"></p>
+            <p id="encryptionTime"></p>
+            <p id="decryptionTime"></p>
         </div>
-
+        
         <!-- Decrypt AES Key and File -->
         <div>
             <button id="decryptAESBtn" onclick="decryptAESKey()" style="display: none;">Decrypt AES Key</button>
             <button id="decryptBtn" onclick="decryptFile()" style="display: none;">Decrypt File</button>
         </div>
-
+    
         <!-- Download Buttons -->
         <div>
             <button id="downloadBtn" onclick="downloadFile()" style="display: none;">Download Encrypted File</button>
             <button id="downloadDecryptedBtn" onclick="downloadDecryptedFile()" style="display: none;">Download Decrypted File</button>
         </div>
+    
+        <!-- Brute Force Simulation -->
+        <div>
+            <button onclick="simulateBruteForce()">Simulate Brute Force on AES Key</button>
+            <p id="bruteForceResult"></p>
+        </div>
+    
+        <!-- Decrypted File Content Box (Pindah di atas tombol download encrypted file) -->
+        <div>
+            <label>Decrypted File Content:</label>
+            <div id="decryptedFile" class="scrollable-box"></div>
+        </div>
     </div>
-
+    
+    <!-- CryptoJS Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-    <script src="kekom.js"></script> <!-- Include external JavaScript file -->
+    <script src="kekom-tes.js"></script> <!-- Include external JavaScript file -->
 </body>
 </html>

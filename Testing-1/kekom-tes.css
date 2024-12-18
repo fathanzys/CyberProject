@@ -1,6 +1,6 @@
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #e1f5fe;
+  background-color: #e0f7fa; /* Ubah background menjadi biru muda */
   margin: 0;
   padding: 0;
 }
@@ -12,11 +12,12 @@ body {
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   padding: 30px;
+  border: 1px solid #0288d1; /* Tambahkan border biru gelap */
 }
 
 h1 {
   text-align: center;
-  color: #0288d1;
+  color: #01579b; /* Biru gelap elegan */
   font-size: 36px;
   margin-bottom: 30px;
 }
@@ -29,17 +30,16 @@ div {
   width: 100%; /* Sesuaikan dengan kebutuhan */
   max-height: 200px; /* Maksimal tinggi kotak (bisa disesuaikan) */
   overflow-y: auto; /* Aktifkan scroll vertikal */
-  border: 1px solid #ccc; /* Tambahkan border agar lebih terlihat */
+  border: 1px solid #0288d1; /* Border biru gelap */
   padding: 10px;
-  background-color: #f9f9f9; /* Warna background opsional */
+  background-color: #f1f8e9; /* Warna background light green untuk kontras */
   font-family: monospace; /* Menggunakan font monospace agar lebih rapi untuk teks hasil */
   white-space: pre-wrap; /* Membungkus teks panjang dengan rapi */
 }
 
-
 label {
   font-weight: bold;
-  color: #000000;
+  color: #01579b; /* Biru gelap elegan */
   font-size: 18px;
   display: block;
   margin-bottom: 5px;
@@ -49,13 +49,13 @@ input[type="file"], input[type="text"], button {
   width: 100%;
   padding: 10px;
   font-size: 16px;
-  border: 1px solid #0288d1;
+  border: 1px solid #01579b; /* Border biru gelap elegan */
   border-radius: 5px;
   margin-top: 5px;
 }
 
 button {
-  background-color: #0288d1;
+  background-color: #01579b; /* Biru gelap elegan */
   color: white;
   border: none;
   cursor: pointer;
@@ -63,7 +63,7 @@ button {
 }
 
 button:hover {
-  background-color: #0277bd;
+  background-color: #003c8f; /* Biru yang lebih gelap saat hover */
 }
 
 #fileSize, #encryptionTime, #decryptionTime {
@@ -72,9 +72,9 @@ button:hover {
   margin-top: 10px;
 }
 
-#encryptedFile, #encryptedAESKey {
+#encryptedFile, #encryptedAESKey, #decryptedFile {
   font-size: 16px;
-  color: #0288d1;
+  color: #01579b; /* Biru gelap elegan untuk hasil enkripsi dan dekripsi */
   word-wrap: break-word;
 }
 

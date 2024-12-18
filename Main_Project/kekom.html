@@ -33,13 +33,14 @@
         <!-- Output -->
         <div>
             <h2>Results</h2>
-            <p id="encryptedFile"></p>
+            <label>Encrypted File Content:</label>
+            <div id="encryptedFile" class="scrollable-box"></div>
             <p id="encryptedAESKey"></p>
             <p id="fileSize"></p>
             <p id="encryptionTime"></p>
             <p id="decryptionTime"></p>
         </div>
-
+        
         <!-- Decrypt AES Key and File -->
         <div>
             <button id="decryptAESBtn" onclick="decryptAESKey()" style="display: none;">Decrypt AES Key</button>
@@ -59,6 +60,7 @@
         </div>
     </div>
 
+    <!-- CryptoJS Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script src="kekom.js"></script> <!-- Include external JavaScript file -->
 </body>
