@@ -95,6 +95,9 @@ function decryptFile() {
         document.getElementById('encryptedFile').innerHTML = `<div style="overflow-y: auto; height: 150px; border: 1px solid #ccc; padding: 10px;">${decryptedFileData}</div>`;
         document.getElementById('downloadDecryptedBtn').style.display = 'inline-block';
         document.getElementById('decryptionTime').innerText = `Decryption Time: ${decryptionTime} ms`; // Display decryption time
+        
+        // Display decrypted content in the new section
+        document.getElementById('decryptedFileContent').innerText = `Decrypted File Content: \n${decryptedFileData}`;
     } else {
         alert('Please ensure both AES key is decrypted and file is encrypted.');
     }
