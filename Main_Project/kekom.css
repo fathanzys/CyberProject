@@ -16,7 +16,7 @@ body {
 
 h1 {
   text-align: center;
-  color: #0288d1;
+  color: #10435f;
   font-size: 36px;
   margin-bottom: 30px;
 }
@@ -55,7 +55,7 @@ input[type="file"], input[type="text"], button {
 }
 
 button {
-  background-color: #0288d1;
+  background-color: #004468;
   color: white;
   border: none;
   cursor: pointer;
@@ -74,7 +74,7 @@ button:hover {
 
 #encryptedFile, #encryptedAESKey {
   font-size: 16px;
-  color: #0288d1;
+  color: #000000;
   word-wrap: break-word;
 }
 
