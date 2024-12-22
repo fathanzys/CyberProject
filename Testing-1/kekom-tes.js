@@ -73,10 +73,23 @@ function encryptAESKey() {
 // Function to decrypt the AES key using RSA
 function decryptAESKey() {
     const rsaPrivateKey = prompt('Enter RSA Private Key to decrypt AES key:');
+
     if (rsaPrivateKey && encryptedAESKey) {
-        // Simulate RSA decryption (replace with actual library for real implementation)
-        decryptedAESKey = atob(encryptedAESKey); // Simple base64 decoding as RSA simulation
-        alert(`Decrypted AES Key: ${decryptedAESKey}`);
+        try {
+            // Simulate RSA decryption (replace this with real RSA library for actual implementation)
+            decryptedAESKey = atob(encryptedAESKey); // Simulate decryption using Base64 decoding
+            
+            // Validation: Ensure decrypted AES key matches expected format
+            if (decryptedAESKey === "" || decryptedAESKey === null) {
+                throw new Error("Invalid RSA Private Key. Cannot decrypt AES Key.");
+            }
+
+            alert(`Decrypted AES Key: ${decryptedAESKey}`);
+        } catch (error) {
+            // Handle RSA decryption failure
+            decryptedAESKey = null; // Reset the decrypted AES key
+            alert("Decryption of AES Key failed. Invalid RSA Private Key.");
+        }
     } else {
         alert('Please provide an RSA private key and make sure the AES key is encrypted.');
     }
@@ -85,21 +98,31 @@ function decryptAESKey() {
 // Function to decrypt the file using the decrypted AES key with time tracking
 function decryptFile() {
     if (decryptedAESKey && encryptedFileData) {
-        // Track time for AES decryption
-        const startTime = performance.now();
-        const decryptedContent = CryptoJS.AES.decrypt(encryptedFileData, decryptedAESKey).toString(CryptoJS.enc.Utf8);
-        const endTime = performance.now();
-        const decryptionTime = (endTime - startTime).toFixed(2); // Time in milliseconds
+        try {
+            // Track time for AES decryption
+            const startTime = performance.now();
+            const decryptedBytes = CryptoJS.AES.decrypt(encryptedFileData, decryptedAESKey); // Decrypt using AES key
+            const decryptedContent = decryptedBytes.toString(CryptoJS.enc.Utf8); // Convert to UTF-8 string
+            const endTime = performance.now();
+            const decryptionTime = (endTime - startTime).toFixed(2); // Time in milliseconds
 
-        decryptedFileData = decryptedContent;
-        document.getElementById('encryptedFile').innerHTML = `<div style="overflow-y: auto; height: 150px; border: 1px solid #ccc; padding: 10px;">${decryptedFileData}</div>`;
-        document.getElementById('downloadDecryptedBtn').style.display = 'inline-block';
-        document.getElementById('decryptionTime').innerText = `Decryption Time: ${decryptionTime} ms`; // Display decryption time
-        
-        // Display decrypted content in the new section
-        document.getElementById('decryptedFileContent').innerText = `Decrypted File Content: \n${decryptedFileData}`;
+            // Check if the decrypted content is valid (non-empty)
+            if (!decryptedContent || decryptedContent === "") {
+                throw new Error("Decryption failed. Invalid AES key or corrupted data.");
+            }
+
+            decryptedFileData = decryptedContent;
+
+            // Update UI with decrypted data
+            document.getElementById('encryptedFile').innerHTML = `<div style="overflow-y: auto; height: 150px; border: 1px solid #ccc; padding: 10px;">${decryptedFileData}</div>`;
+            document.getElementById('downloadDecryptedBtn').style.display = 'inline-block';
+            document.getElementById('decryptionTime').innerText = `Decryption Time: ${decryptionTime} ms`; // Display decryption time
+        } catch (error) {
+            // Handle decryption failure
+            alert('Decryption failed. Incorrect AES key or corrupted encrypted file.');
+        }
     } else {
-        alert('Please ensure both AES key is decrypted and file is encrypted.');
+        alert('Please ensure the AES key is decrypted correctly before attempting to decrypt the file.');
     }
 }
 
@@ -112,11 +135,4 @@ function downloadFile() {
     link.click();
 }
 
-// Function to download the decrypted file
-function downloadDecryptedFile() {
-    const blob = new Blob([decryptedFileData], { type: 'text/plain' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = 'decryptedFile.txt';
-    link.click();
-}
+// Function to download the

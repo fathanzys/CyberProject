@@ -1,88 +1,237 @@
+/* Global Styles */
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #e0f7fa; /* Ubah background menjadi biru muda */
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom right, #191834, #2b2c68, #2b2c68, #191834, #191834);
+  color: white;
+  text-align: center;
+}
+
+header {
+  padding: 30px 0;
+  position: sticky;
+  background-color: #191834;
+  top: 0;
+  z-index: 1000; /* Ensures the header stays on top */
+}
+
+nav ul {
+  list-style-type: none;
   margin: 0;
   padding: 0;
+  display: flex;
+  justify-content: center;
 }
 
-.container {
-  width: 60%;
-  margin: 50px auto;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  border: 1px solid #0288d1; /* Tambahkan border biru gelap */
+nav ul li {
+  margin: 0 15px;
 }
 
-h1 {
-  text-align: center;
-  color: #01579b; /* Biru gelap elegan */
-  font-size: 36px;
-  margin-bottom: 30px;
-}
-
-div {
-  margin-bottom: 20px;
-}
-
-.scrollable-box {
-  width: 100%; /* Sesuaikan dengan kebutuhan */
-  max-height: 200px; /* Maksimal tinggi kotak (bisa disesuaikan) */
-  overflow-y: auto; /* Aktifkan scroll vertikal */
-  border: 1px solid #0288d1; /* Border biru gelap */
-  padding: 10px;
-  background-color: #f1f8e9; /* Warna background light green untuk kontras */
-  font-family: monospace; /* Menggunakan font monospace agar lebih rapi untuk teks hasil */
-  white-space: pre-wrap; /* Membungkus teks panjang dengan rapi */
-}
-
-label {
-  font-weight: bold;
-  color: #01579b; /* Biru gelap elegan */
-  font-size: 18px;
-  display: block;
-  margin-bottom: 5px;
-}
-
-input[type="file"], input[type="text"], button {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #01579b; /* Border biru gelap elegan */
-  border-radius: 5px;
-  margin-top: 5px;
-}
-
-button {
-  background-color: #01579b; /* Biru gelap elegan */
+nav ul li a {
+  text-decoration: none;
   color: white;
+  font-weight: bold;
+  padding-bottom: 5px;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #26b7cd;
+}
+
+nav ul li a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #26b7cd;
+  transition: width 0.3s;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+nav ul li a:hover::after {
+  width: 100%;
+}
+
+nav ul li a.active {
+  color: #26b7cd;
+}
+
+nav ul li a.active::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #26b7cd;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+/* Hero Section */
+.hero {
+  padding: 180px 20px 20px 20px; /* Top, Right, Bottom, Left padding */
+  position: relative;
+}
+
+.hero .highlight {
+  color: #26b7cd;
+}
+
+.hero button {
+  background-color: #26b7cd;
+  color: black;
   border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #003c8f; /* Biru yang lebih gelap saat hover */
-}
-
-#fileSize, #encryptionTime, #decryptionTime {
-  font-size: 18px;
-  color: #555;
-  margin-top: 10px;
-}
-
-#encryptedFile, #encryptedAESKey, #decryptedFile {
+  padding: 15px 30px;
   font-size: 16px;
-  color: #01579b; /* Biru gelap elegan untuk hasil enkripsi dan dekripsi */
-  word-wrap: break-word;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-bottom: 30px; /* Bottom margin */
 }
 
-button:disabled {
-  background-color: #b0bec5;
-  cursor: not-allowed;
+.hero .lock-icon {
+  width: 100px;
+  height: auto;
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 
-#decryptAESBtn, #decryptBtn, #downloadBtn, #downloadDecryptedBtn {
+.hero .hero-description {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  color: #e0e0e0;
+}
+
+/* About, Details, and Team Sections */
+.about, .details, .team {
+  padding: 150px 20px;
+}
+
+.details-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0;
+}
+
+.detail {
+  margin: 20px;
+  padding: 20px;
+  background: rgba(253, 253, 253, 0.1);
+  border-radius: 40px;
+  width: 60%;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.aes {
+  background-color: rgba(0, 0, 128, 0.1); /* Slightly different background for AES */
+}
+
+.rsa {
+  background-color: rgba(0, 0, 128, 0.1); /* Slightly different background for RSA */
+}
+
+h3 {
+  font-size: 24px;
+  margin-top: 20px;
+  font-weight: bold;
+  color: #92d4ff;
+}
+
+p {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+strong {
+  font-weight: bold;
+}
+
+a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Team Section */
+.team {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 50px 20px;
+}
+
+.team-member {
+  display: inline-block;
+  margin: 20px;
+  text-align: center;
+}
+
+.team-member .photo {
+  width: 200px;
+  height: 250px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.team-member .photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.team-member p {
+  font-size: 16px;
+  color: white;
   margin-top: 10px;
+}
+
+.team-role {
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.team-position {
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.team-member a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.team-member a:hover {
+  color: #26b7cd;
+  text-decoration: underline;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .details-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .detail {
+    width: 90%;
+    margin: 10px 0;
+  }
+
+  .team-member {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 }

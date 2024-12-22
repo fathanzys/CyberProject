@@ -3,71 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>test</title>
+    <title>Hybrid Cryptography File Sharing</title>
     <link rel="stylesheet" href="kekom-tes.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Hybrid Cryptography File Sharing</h1>
-    
-        <!-- File Upload Form -->
-        <div>
-            <label for="fileInput">Upload File:</label>
-            <input type="file" id="fileInput" accept="*/*">
-        </div>
-    
-        <!-- AES Encryption Form -->
-        <div>
-            <label for="aesKey">AES Key:</label>
-            <input type="text" id="aesKey" placeholder="Enter AES key" />
-            <button onclick="encryptFile()">Encrypt File</button>
-        </div>
-    
-        <!-- RSA Encryption Form -->
-        <div>
-            <label for="rsaPublicKey">RSA Public Key:</label>
-            <input type="text" id="rsaPublicKey" placeholder="Enter RSA Public Key" />
-            <button onclick="encryptAESKey()">Encrypt AES Key with RSA</button>
-        </div>
-    
-        <!-- Output -->
-        <div>
-            <h2>Results</h2>
-            <label>Encrypted File Content:</label>
-            <div id="encryptedFile" class="scrollable-box"></div>
-            <p id="encryptedAESKey"></p>
-            <p id="fileSize"></p>
-            <p id="encryptionTime"></p>
-            <p id="decryptionTime"></p>
-        </div>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#">Encrypt</a></li>
+                <li><a href="#author">Author</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-logo">
+                    <img src="img/logo.png" alt="Logo" class="logo">
+                </div>
+                <div class="hero-text">
+                    <h1><span class="highlight">Hybrid</span> Cryptography File Sharing</h1>
+                    <p class="hero-description">
+                        Top-notch file security with the powerful combination of RSA and AES, a fast, secure, and trusted hybrid technology!
+                    </p>
+                    <button>Get Started</button>
+                </div>
+            </div>
+            <img src="img/image 2.png" alt="Lock Icon" class="lock-icon">
+        </section>        
+        <section id="about" class="about">
+            <h2>About</h2>
+            <p>Dalam proyek ini, kami mengimplementasikan sistem kriptografi hybrid yang menggunakan AES (Advanced Encryption Standard) untuk enkripsi file dan RSA (Rivest-Shamir-Adleman) untuk mengenkripsi kunci AES. Tujuan utama dari proyek ini adalah untuk memastikan transmisi file yang aman dengan cara mengenkripsi file tersebut dan hanya memungkinkan penerima yang sah untuk mendekripsinya. Sistem ini akan mendukung berbagai ukuran file (1MB, 5MB, 10MB, dan 100MB) dan bertujuan untuk mengevaluasi kinerja dari segi waktu enkripsi/dekripsi dan konsumsi sumber daya (RAM/CPU).</p>
+            <p>Proyek ini juga mencakup antarmuka pengguna yang ramah, memungkinkan pengguna untuk mengunggah file, memilih algoritma enkripsi, dan menyimpan file yang sudah terenkripsi. Setelah proses enkripsi, file tersebut dapat dikirim melalui protokol pengiriman yang disimulasikan, dan dekripsi dapat dilakukan oleh penerima yang dimaksud. Sistem secara keseluruhan menjamin kerahasiaan, integritas, dan keaslian file yang ditransfer.</p>
+            <p>Selain fungsi dasar, analisis kinerja akan dilakukan untuk menilai efektivitas sistem kriptografi hybrid ini, dengan fokus pada kecepatan dan penggunaan sumber daya. Simulasi serangan brute-force juga akan dilakukan untuk menguji keamanan proses enkripsi dan menilai ketahanannya terhadap jenis-jenis serangan siber yang umum.</p>
+        </section>
+
+        <div class="details-container">
+            <div class="detail aes">
+                <h3>AES (Advanced Encryption Standard)</h3>
+                <p>AES adalah algoritma kriptografi simetris yang digunakan untuk mengenkripsi dan mendekripsi data menggunakan kunci yang sama. AES bekerja dalam blok 128 bit dan dapat menggunakan kunci 128, 192, atau 256 bit. Proses enkripsi AES mencakup serangkaian transformasi matematis pada data, seperti substitusi byte, pergeseran baris, dan pencampuran kolom.</p>
+                <p>AES digunakan dalam banyak aplikasi untuk mengamankan data dalam jumlah besar dan dikenal karena kecepatan dan efisiensinya. AES 256-bit dianggap sangat aman dan banyak digunakan dalam aplikasi enkripsi file, VPN, dan komunikasi aman.</p>
+                <p><strong>Kelebihan:</strong> Cepat, efisien, dan aman (terutama AES 256-bit).<br>
+                <strong>Kelemahan:</strong> Memerlukan cara aman untuk distribusi kunci simetris.</p>
+                <p>Sumber: <a href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard" target="_blank">Wikipedia - AES</a></p>
+            </div>
         
-        <!-- Decrypt AES Key and File -->
-        <div>
-            <button id="decryptAESBtn" onclick="decryptAESKey()" style="display: none;">Decrypt AES Key</button>
-            <button id="decryptBtn" onclick="decryptFile()" style="display: none;">Decrypt File</button>
+            <div class="detail rsa">
+                <h3>RSA (Rivest–Shamir–Adleman)</h3>
+                <p>RSA adalah algoritma kriptografi kunci publik yang menggunakan pasangan kunci publik dan pribadi untuk enkripsi dan dekripsi. RSA dianggap aman karena kesulitan dalam faktorisasi angka besar yang menjadi dasar keamanannya. RSA digunakan dalam tanda tangan digital dan enkripsi data sensitif.</p>
+                <p><strong>Kelebihan:</strong> Keamanan didasarkan pada kesulitan faktorisasi dan memungkinkan tanda tangan digital.<br>
+                <strong>Kelemahan:</strong> Lebih lambat daripada enkripsi simetris (seperti AES) dan memerlukan kunci yang lebih besar untuk tingkat keamanan tinggi.</p>
+                <p>Sumber: <a href="https://en.wikipedia.org/wiki/RSA_(cryptosystem)" target="_blank">Wikipedia - RSA</a></p>
+            </div>
         </div>
-    
-        <!-- Download Buttons -->
-        <div>
-            <button id="downloadBtn" onclick="downloadFile()" style="display: none;">Download Encrypted File</button>
-            <button id="downloadDecryptedBtn" onclick="downloadDecryptedFile()" style="display: none;">Download Decrypted File</button>
-        </div>
-    
-        <!-- Brute Force Simulation -->
-        <div>
-            <button onclick="simulateBruteForce()">Simulate Brute Force on AES Key</button>
-            <p id="bruteForceResult"></p>
-        </div>
-    
-        <!-- Decrypted File Content Box (Pindah di atas tombol download encrypted file) -->
-        <div>
-            <label>Decrypted File Content:</label>
-            <div id="decryptedFile" class="scrollable-box"></div>
-        </div>
-    </div>
-    
-    <!-- CryptoJS Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-    <script src="kekom-tes.js"></script> <!-- Include external JavaScript file -->
+
+        <section id="author" class="team">
+            <h2>The People Behind...</h2>
+            <div class="team-member">
+                <div class="photo">
+                    <img src="img/IMG_3928.jpg" alt="Fathan Nabil Arrazani">
+                </div>
+                <p>
+                    <a href="https://www.linkedin.com/in/hannpage/" target="_blank">Fathan Nabil Arrazani</a><br>
+                    <span class="team-role">010252024</span> <span class="team-position">as Fullstack</span>
+                </p>
+            </div>
+            <div class="team-member">
+                <div class="photo">
+                    <img src="img/anca.jpeg" alt="Pancaran Ratna Mustika">
+                </div>
+                <p>
+                    <a href="https://www.linkedin.com/in/pancaranratnam/" target="_blank">Pancaran Ratna Mustika</a><br>
+                    <span class="team-role">010252027</span> <span class="team-position">as PPT and Paper</span>
+                </p>
+            </div>
+            <div class="team-member">
+                <div class="photo">
+                    <img src="img/patir.jpeg" alt="Muhammad Faathir Arrahman">
+                </div>
+                <p>
+                    <a href="https://www.linkedin.com/in/muhammad-faathir-ar-rahman-362091250/" target="_blank">Muhammad Faathir Arrahman</a><br>
+                    <span class="team-role">010252031</span> <span class="team-position">as UI Design</span>
+                </p>
+            </div>            
+        </section>
+    </main>
 </body>
 </html>
