@@ -1,8 +1,7 @@
-/* Global Styles */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: linear-gradient(to bottom right, #191834, #2b2c68, #2b2c68, #191834, #191834);
+  background: linear-gradient(to bottom right, #191834,#272483,#4446af, #4b4edd, #191834, #191834);
   color: white;
   text-align: center;
 }
@@ -12,7 +11,7 @@ header {
   position: sticky;
   background-color: #191834;
   top: 0;
-  z-index: 1000; /* Ensures the header stays on top */
+  z-index: 1000;
 }
 
 nav ul {
@@ -37,7 +36,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  color: #26b7cd;
+  color: #daf7fc;
 }
 
 nav ul li a::after {
@@ -71,26 +70,26 @@ nav ul li a.active::after {
   left: 0;
 }
 
-/* Hero Section */
 .hero {
-  padding: 180px 20px 20px 20px; /* Top, Right, Bottom, Left padding */
+  padding: 180px 20px 20px 20px;
   position: relative;
 }
 
 .hero .highlight {
-  color: #26b7cd;
+  color: #ffffff;
 }
 
 .hero button {
   background-color: #26b7cd;
   color: black;
   border: none;
-  padding: 15px 30px;
+  padding: 12px 30px;
   font-size: 16px;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 50px;
   margin-top: 20px;
-  margin-bottom: 30px; /* Bottom margin */
+  margin-bottom: 30px;
+  width: auto;
 }
 
 .hero .lock-icon {
@@ -108,7 +107,6 @@ nav ul li a.active::after {
   color: #e0e0e0;
 }
 
-/* About, Details, and Team Sections */
 .about, .details, .team {
   padding: 150px 20px;
 }
@@ -130,11 +128,11 @@ nav ul li a.active::after {
 }
 
 .aes {
-  background-color: rgba(0, 0, 128, 0.1); /* Slightly different background for AES */
+  background-color: rgba(0, 0, 128, 0.1);
 }
 
 .rsa {
-  background-color: rgba(0, 0, 128, 0.1); /* Slightly different background for RSA */
+  background-color: rgba(0, 0, 128, 0.1);
 }
 
 h3 {
@@ -163,7 +161,6 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Team Section */
 .team {
   background: rgba(0, 0, 0, 0.5);
   padding: 50px 20px;
@@ -218,7 +215,6 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Responsive Styling */
 @media (max-width: 768px) {
   .details-container {
     flex-direction: column;
@@ -235,3 +231,143 @@ a:hover {
     margin-bottom: 20px;
   }
 }
+
+.container {
+  width: 40%;
+  margin: 50px auto;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+h1 {
+  text-align: center;
+  color: #10435f;
+  font-size: 36px;
+  margin-bottom: 30px;
+}
+
+div {
+  margin-bottom: 20px;
+}
+
+.scrollable-box {
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #f9f9f9;
+  font-family: monospace;
+  white-space: pre-wrap;
+}
+
+label {
+  font-weight: bold;
+  color: #000000;
+  font-size: 18px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="file"], input[type="text"], button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #0288d1;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.key-inputs {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.key-inputs .aes-box, .key-inputs .rsa-box {
+  width: 48%;
+  padding: 20px;
+  border: 1px solid #0288d1;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 128, 0.1);
+}
+
+.key-inputs .aes-box {
+  text-align: left;
+}
+
+.key-inputs .rsa-box {
+  text-align: right;
+}
+
+button {
+  background-color: #004468;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0277bd;
+}
+
+#fileSize, #encryptionTime, #decryptionTime {
+  font-size: 18px;
+  color: #555;
+  margin-top: 10px;
+}
+
+#encryptedFile, #encryptedAESKey {
+  font-size: 16px;
+  color: #000000;
+  word-wrap: break-word;
+}
+
+button:disabled {
+  background-color: #b0bec5;
+  cursor: not-allowed;
+}
+
+.result-section {
+  margin-top: 40px;
+  padding: 30px 20px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+}
+
+.result-section h2 {
+  font-size: 28px;
+  color: #10435f;
+}
+
+.result-section .result-item {
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #333;
+}
+
+#decryptAESBtn, #decryptBtn, #downloadBtn, #downloadDecryptedBtn {
+  margin-top: 10px;
+}
+/* Style for scrollable brute force results */
+.bruteforce-result {
+  width: 100%;
+  height: 200px; /* Adjust this value as per your preference */
+  overflow-y: auto; /* Enables vertical scrolling */
+  border: 1px solid #ccc; /* Optional: Adds a border around the scrollbox */
+  padding: 10px; /* Adds some padding inside the box */
+  background-color: #f9f9f9; /* Optional: Light background color */
+  font-family: Arial, sans-serif; /* Optional: Font style */
+  font-size: 14px; /* Optional: Font size */
+  white-space: pre-wrap; /* Ensures proper formatting for the data */
+}
+
+/* Optional: Styling for the result container */
+.result-section {
+  margin-top: 20px; /* Adds some spacing above the results */
+}
+
